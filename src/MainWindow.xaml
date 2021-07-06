@@ -1,0 +1,195 @@
+﻿<Window x:Class="HP_3457A_CAL_DUMP_AR488.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HP_3457A_CAL_DUMP_AR488"
+        mc:Ignorable="d"
+        Title="HP 3457A Calibration Dump Utility for AR488 Arduino GPIB Adapter" Height="600" Width="600">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="220"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="COM_Port_List" Margin="2,2,2,2" Grid.Column="0" Grid.Row="0" IsEnabled="True">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="COM_Refresh" Content="Refresh" Width="50" Height="20" Margin="0,-2,0,2" Click="COM_Refresh_Click"/>
+                    <TextBlock FontWeight="Bold" Margin="5,0,0,0">List of COM Ports</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <ListBox x:Name="COM_List" Margin="0,0,0,0" MouseDoubleClick="COM_List_MouseDoubleClick"/>
+        </GroupBox>
+        <GroupBox x:Name="HP3457A_COM_Config" Margin="2,2,2,2" Grid.Column="1" Grid.Row="0" IsEnabled="True">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" Margin="5,0,0,0">HP 3457A COM Info</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Content="COM Port Number:" Margin="0,0,0,0" Grid.Column="0" Grid.Row="1" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="COM_Port" Margin="0,0,0,2" TextWrapping="Wrap" VerticalContentAlignment="Center" FontSize="14" Text="COM22" Grid.Column="1" Grid.Row="1"/>
+                <Label Content="Bits per second:" Margin="0,0,0,0" Grid.Column="0" Grid.Row="2" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="COM_Bits" Margin="0,0,0,2" FontSize="14" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="2">
+                    <ComboBoxItem Content="300" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="600" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="1200" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="2400" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="4800" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="9600" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="14400" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="19200" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="38400" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="57600" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="115200" IsSelected="True" IsEnabled="True"/>
+                    <ComboBoxItem Content="128000" IsSelected="False" IsEnabled="True"/>
+                </ComboBox>
+                <Label Content="Data bits:" Margin="0,0,0,0" Grid.Column="0" Grid.Row="3" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="COM_DataBits" Margin="0,0,0,2" FontSize="14" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="3">
+                    <ComboBoxItem Content="4" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="5" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="6" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="7" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="8" IsSelected="True" IsEnabled="True"/>
+                </ComboBox>
+                <Label Content="Parity:" Margin="0,0,0,0" Grid.Column="0" Grid.Row="4" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="COM_Parity" Margin="0,0,0,2" FontSize="14" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="4">
+                    <ComboBoxItem Content="Even" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="Odd" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="None" IsSelected="True" IsEnabled="True"/>
+                    <ComboBoxItem Content="Mark" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="Space" IsSelected="False" IsEnabled="True"/>
+                </ComboBox>
+                <Label Content="Stop bits:" Margin="0,0,0,0" Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="COM_Stop" Margin="0,0,0,2" FontSize="14" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="5">
+                    <ComboBoxItem Content="1" IsSelected="True" IsEnabled="True"/>
+                    <ComboBoxItem Content="1.5" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="2" IsSelected="False" IsEnabled="True"/>
+                </ComboBox>
+                <Label Content="Flow control:"  Margin="0,0,0,0" Grid.Column="0" Grid.Row="6" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="COM_Flow" Margin="0,0,0,2" FontSize="14" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="6">
+                    <ComboBoxItem Content="Xon/Xoff" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="Hardware" IsSelected="False" IsEnabled="True"/>
+                    <ComboBoxItem Content="None" IsSelected="True" IsEnabled="True"/>
+                </ComboBox>
+                <Label Content="Write Timeout: "  Margin="0,0,0,0" Grid.Column="0" Grid.Row="7" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="COM_write_timeout" Margin="0,0,0,2" TextWrapping="Wrap" FontSize="14" Text="3000" Grid.Column="1" Grid.Row="7"/>
+                <Label Content="Read Timeout: "  Margin="0,0,0,0" Grid.Column="0" Grid.Row="8" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="COM_read_timeout" Margin="0,0,0,2" TextWrapping="Wrap" FontSize="14" Text="3000" Grid.Column="1" Grid.Row="8"/>
+                <Label Content="Request to Send: "  Margin="0,0,0,0" Grid.Column="0" Grid.Row="9" HorizontalContentAlignment="Right"/>
+                <ComboBox x:Name="COM_rtsEnable" Margin="0,0,0,2" FontSize="14" VerticalContentAlignment="Center" Grid.Column="1" Grid.Row="9">
+                    <ComboBoxItem Content="True" IsSelected="True" IsEnabled="True"/>
+                    <ComboBoxItem Content="False" IsSelected="False" IsEnabled="True"/>
+                </ComboBox>
+                <Label Content="GPIB Address: "  Margin="0,0,0,0" Grid.Column="0" Grid.Row="10" HorizontalContentAlignment="Right"/>
+                <TextBox x:Name="GPIB_Address" Margin="0,0,0,2" TextWrapping="Wrap" FontSize="14" Text="22" Grid.Column="1" Grid.Row="10"/>
+            </Grid>
+        </GroupBox>
+        <GroupBox x:Name="HP3457A_Cal_Config" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="2,0,2,5" IsEnabled="True">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock FontWeight="Bold" Margin="5,0,0,0">HP 3457A Cal Dump Config</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="270"/>
+                    <ColumnDefinition Width="15"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Left">
+                        <Label Content="Start Address: "/>
+                        <TextBox x:Name="Start_Address_Input_Field" FontSize="13" Padding="0" Margin="0,3,0,3" HorizontalContentAlignment="Center" Width="100" Text=""/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" Margin="0,0,0,0" HorizontalAlignment="Left">
+                        <Label Content="Stop Address: "/>
+                        <TextBox x:Name="Stop_Address_Input_Field" FontSize="13" Padding="0" Margin="0,3,0,3" HorizontalContentAlignment="Center" Width="100" Text=""/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.RowSpan="2" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Button FontSize="18" Padding="8" BorderBrush="{x:Null}" Background="#FF34E25C"  Content="Start" Click="Get_Calibration_Data"/>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="0" Grid.RowSpan="2" Grid.Column="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Content="Reset HP 3457A: "/>
+                        <Button Content="Reset" VerticalAlignment="Center" Margin="0,0,0,0" Padding="0,0,0,0" Width="40" Height="20" Click="Reset_3457A_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Content="Verify HP 3457A: "/>
+                        <Button Content="ID?" VerticalAlignment="Center" Margin="-1,0,0,0" Padding="0,0,0,0" Width="40" Height="20" Click="Verify_3457A_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Content="Reset AR488: "/>
+                        <Button Content="++rst" VerticalAlignment="Center" Margin="0,0,0,0" Padding="0,0,0,0" Width="40" Height="20" Click="AR488_Reset_Click"/>
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Label Content="Verify AR488: "/>
+                        <Button Content="++ver" VerticalAlignment="Center" Margin="-1,0,0,0" Padding="0,0,0,0" Width="40" Height="20" Click="AR488_Version_Click"/>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="2,0,2,2">
+            <GroupBox.Header>
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="Info_Clear" Content="Clear" Margin="0,-2,0,0" Width="35" Click="Info_Clear_Click"/>
+                    <TextBlock FontWeight="Bold" Margin="5,0,0,0">Info Log</TextBlock>
+                </StackPanel>
+            </GroupBox.Header>
+            <ScrollViewer x:Name="Output_Log_Scroll" Margin="0,0,0,0" HorizontalScrollBarVisibility="Auto">
+                <ItemsControl  ItemsSource="{Binding Output_Log}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+            </ScrollViewer>
+        </GroupBox>
+    </Grid>
+</Window>

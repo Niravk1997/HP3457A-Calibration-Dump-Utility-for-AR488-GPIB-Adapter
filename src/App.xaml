@@ -1,0 +1,9 @@
+﻿<Application x:Class="HP_3457A_CAL_DUMP_AR488.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:HP_3457A_CAL_DUMP_AR488"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
